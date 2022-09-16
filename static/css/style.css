@@ -1,7 +1,8 @@
 body {
     margin: 0;
     box-sizing: border-box;
-
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-color: #ECE5C7; */
 }
 
 .habit-container {
@@ -17,32 +18,52 @@ body {
     grid-area: nav;
     padding: 50px;
     border-bottom: 2cm, crimson;
+    background-color:#354259;
 }
 
 .daily-container {
     grid-area: daily;
+    border-right-style: dashed;
+    border-width: 3px;
+    min-height: 100vh;
+    border-color: #354259;
 }
 .weekly-container {
     grid-area: weekly;
+    border-right-style: dashed;
+    border-width: 3px;
+    border-color: #354259;
+    min-height: 100vh;
 }
 .monthly-container {
     grid-area: monthly;
 }
 
-.daily-container, .weekly-container, .monthly-container {
-    /* padding: 80px; */
-
-}
-
 #add-habit-btn {
     float: right;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    color:white;
+    border-color: #C2DED1;
 }
 
-.habit, .title {
-    background-color: blue;
-    text-align: center;
+.habit {
+    background-color:#C2DED1;
+    /* text-align: center; */
     padding: 20px;
     margin: 20px;
+    border-color: #CDC2AE;
+    border-style:solid;
+    border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    text-decoration-line:underline ;
 }
 
 
