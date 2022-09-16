@@ -1,0 +1,28 @@
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card{
+    border: none;
+    box-shadow: 4px 3px 10px #354259;
+    border-radius: 20px;
+    width: 50%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    margin: 20px auto;
+    width: 50%;
+}
+
+input {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 0.5px gray solid;
+}
