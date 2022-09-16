@@ -26,3 +26,18 @@ input {
     border-radius: 5px;
     border: 0.5px gray solid;
 }
+
+.submit-btn{
+    cursor: pointer;
+}
+
+.signup-btn{
+    margin-top: 2rem;
+    border: none;
+    cursor: pointer;
+}
+
+p{
+    text-align: center;
+    color: red;
+}
