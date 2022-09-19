@@ -63,7 +63,10 @@ body {
     text-align: center;
     font-size: 30px;
     padding: 20px;
-    text-decoration-line:underline ;
+    /* text-decoration-line:underline ; */
+    color: #354259;
+    border-bottom-style: dashed;
+    background-color: #ECE5C7;
 }
 
 
