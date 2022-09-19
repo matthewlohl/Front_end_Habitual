@@ -1,5 +1,4 @@
 
-
 async function fetchOne(ID) {
 
     let response = await fetch(`${ID}`);
@@ -27,10 +26,4 @@ const showHabit = (habit, frequency, period) => {
     // Add class to cardTitle
     card.appendChild(cardFrequencyBox);
     
-
-
-    
-    
-
-
 }
