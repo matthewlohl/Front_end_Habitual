@@ -1,0 +1,17 @@
+{
+  "name": "front_end_habitual",
+  "version": "1.0.0",
+  "description": "## Project 2 - build an Habit tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --no-cache",
+    "coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.0.3",
+    "jest-environment-jsdom": "^29.0.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
