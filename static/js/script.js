@@ -1,5 +1,4 @@
 
-
 async function fetchAll() {
     let response = await fetch(`http://localhost:3000/habits`);
     let data = await response.json();
@@ -35,6 +34,7 @@ const showHabit = (habit, frequency, frequencyDone) => {
     cardFrequency.textContent = (frequencyDone.toString() + " / " + frequency.toString());
     // Add class to cardTitle
     card.appendChild(cardFrequencyBox);
+
 
 
 }
