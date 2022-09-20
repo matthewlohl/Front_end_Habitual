@@ -40,9 +40,15 @@ const showHabit = (habit, frequency, frequencyDone) => {
 }
 
 
-const showAll = (habit, period) => {
+const showAll = (entryData) => {
+
+    const newDiv = document.createElement('div');
+    newDiv.className = 'habit'
+    newDiv.id = entryData.id
 
     
+
+
 
 
 

@@ -62,19 +62,7 @@ body {
     cursor: pointer;
 }
 
-.habit {
-    background-color:#C2DED1;
-    /* text-align: center; */
-    padding: 20px;
-    margin: 20px;
-    border-color: #CDC2AE;
-    border-style:solid;
-    border-radius: 10px;
-}
 
-.habit:hover {
-    cursor: pointer;
-}
 
 .title {
     text-align: center;
@@ -95,6 +83,49 @@ body {
     background-color: #CDC2AE;
 }
 
+.habit {
+    background-color:#C2DED1;
+    display: flex;
+    /* text-align: center; */
+    padding: 20px;
+    margin: 20px;
+    border-color: #CDC2AE;
+    border-style:solid;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.habit-text {
+    flex: 3 0 0;
+}
+
+.habit-text:hover {
+    cursor: pointer;
+}
+
+.habit-frequency {
+    flex: 1 0 0;
+}
+
+.add-completed-once-btn {
+    background-color: transparent;
+    border-style: none;
+    padding:0;
+    margin-right: 10px;
+    color: #354259;
+    font-size: 40px;
+    font-weight: 700;
+    flex: 1 0 0;
+    border-radius: 10px;
+}
+
+.add-completed-once-btn:hover{
+    cursor:pointer;
+    background-color: #354259;
+    color: #C2DED1;
+}
 
 
 
