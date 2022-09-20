@@ -3,9 +3,9 @@ async function fetchAll() {
     let response = await fetch(`http://localhost:3000/habits`);
     let data = await response.json();
     data.forEach(habit => showAll(habit))
-    }
+}
 
-    
+
 
 
 async function fetchOne(ID) {
@@ -14,12 +14,12 @@ async function fetchOne(ID) {
     let data = await response.json();
     showHabit(data.name, data.frequency, data.frequencyDone, data.period)
 
-    
+
 }
 
 
-async function postHabit(e){
-    e.preventDefault();        
+async function postHabit(e) {
+    e.preventDefault();
     try {
         const options = {
             method: 'POST',
@@ -34,19 +34,19 @@ async function postHabit(e){
 
         const response = await fetch('http://localhost:3000/habits', options);
         const { id, err } = await response.json();
-        if(err) { 
-            throw Error(err) 
+        if (err) {
+            throw Error(err)
         } else {
             fetchOne(id)
         }
     } catch (err) {
         console.warn(err);
     }
-    }
+}
 
-async function appendFrequency(e){
+async function appendFrequency(e) {
     e.preventDefault();
-    try{
+    try {
         const options = {
             method: 'PATCH',
             headers: { "Content-Type": "application/json" },
@@ -57,22 +57,22 @@ async function appendFrequency(e){
 
         const response = await fetch(`http://localhost:3000/habits/${ID}`)
         const { id, err } = await response.json();
-        if(err) {
+        if (err) {
             throw Error(err)
         } else {
             fetchOne(id)
         }
-        } catch (err){
-            console.warn(err);
-        }
-    
+    } catch (err) {
+        console.warn(err);
+    }
+
 }
 
 
 const showHabit = (habit, frequency, frequencyDone) => {
-    
+
     const card = document.createElement('div');
-    const postArea = document.createElement('div'); 
+    const postArea = document.createElement('div');
     // Add classes to card and postArea 
     postArea.appendChild(card);
 
@@ -92,44 +92,70 @@ const showHabit = (habit, frequency, frequencyDone) => {
 
 
 const showAll = (entryData) => {
+    if (entryData.frequencyDone < entryData.frequency) {
+        const newDiv = document.createElement('div');
+        newDiv.className = 'habit'
+        newDiv.id = "habit" + entryData.id
 
-    const newDiv = document.createElement('div');
-    newDiv.className = 'habit'
-    newDiv.id = "habit" + entryData.id
+        const newHabitText = document.createElement('div');
+        newHabitText.className = 'habit-text'
+        newHabitText.id = "habit-text" + entryData.id
+        newHabitText.textContent = entryData.habit_name
 
-    const newHabitText = document.createElement('div');
-    newHabitText.className = 'habit-text'
-    newHabitText.id = "habit-text" + entryData.id
-    newHabitText.textContent = entryData.habit_name
+        const newFreqCounter = document.createElement('div');
+        newFreqCounter.className = 'habit-counter'
+        newFreqCounter.id = "habit-counter" + entryData.id
+        newFreqCounter.textContent = entryData.frequencyDone "/" + entryData.frequency
 
-    const newFreqCounter = document.createElement('div');
-    newFreqCounter.className = 'habit-counter'
-    newFreqCounter.id = "habit-counter" + entryData.id
-    newFreqCounter.textContent = "0/" + entryData.frequency
+        const newDoneBtn = document.createElement('button');
+        newDoneBtn.className = "add-completed-once-btn"
+        newDoneBtn.id = "add-completed-once-btn" + entryData.id
 
-    const newDoneBtn = document.createElement('button');
-    newDoneBtn.className = "add-completed-once-btn"
-    newDoneBtn.id = "add-completed-once-btn" + entryData.id
+        newDiv.appendChild(newHabitText)
+        newDiv.appendChild(newFreqCounter)
+        newDiv.appendChild(newDoneBtn)
 
-    newDiv.appendChild(newHabitText)
-    newDiv.appendChild(newFreqCounter)
-    newDiv.appendChild(newDoneBtn)
+        const dailyDiv = document.querySelector(".daily-container")
+        const weeklyDiv = document.querySelector(".weekly-container")
+        const monthlyDiv = document.querySelector(".monthly-container")
 
-    const dailyDiv = document.querySelector(".daily-container")
-    const weeklyDiv = document.querySelector(".weekly-container")
-    const monthlyDiv = document.querySelector(".monthly-container")
+        if (entryData.period === 1) {
+            dailyDiv.appendChild(newDiv)
+        }
+        else if (entryData.period === 2) {
+            weeklyDiv.appendChild(newDiv)
+        }
+        else {
+            monthlyDiv.appendChild(newDiv)
+        }
+    } else {
+        const newDiv = document.createElement('div');
+        newDiv.className = 'habit'
+        newDiv.id = "habit" + entryData.id
 
-    if (entryData.period === 1) {
-        dailyDiv.appendChild(newDiv)
+        const newHabitText = document.createElement('div');
+        newHabitText.className = 'habit-text'
+        newHabitText.id = "habit-text" + entryData.id
+        newHabitText.textContent = entryData.habit_name
+
+        newDiv.appendChild(newHabitText)
+        const dailyDiv = document.querySelector(".completed-daily")
+        const weeklyDiv = document.querySelector(".completed-weekly")
+        const monthlyDiv = document.querySelector(".completed-monthly")
+
+        if (entryData.period === 1) {
+            dailyDiv.appendChild(newDiv)
+        }
+        else if (entryData.period === 2) {
+            weeklyDiv.appendChild(newDiv)
+        }
+        else {
+            monthlyDiv.appendChild(newDiv)
+        }
     }
-    else if (entryData.period === 2) {
-        weeklyDiv.appendChild(newDiv)
-    }
-    else {
-        monthlyDiv.appendChild(newDiv)
-    }
 
-    
+
+
 
 
 
