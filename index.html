@@ -15,6 +15,28 @@
 
 <body>
 
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="modal-title">Add Your New Habit</div>
+            <button class="close-button">X</button>
+        </div>
+        <div class="modal-body">
+            <form class="add-habbit-form">
+                <label for="habit">Habit name:</label>
+                <input type="text" name="habit" placeholder="Type your habbit here...">
+                <label for="period">Choose your tracking period:</label>
+                <select name="period" id="period">
+                    <option value="1">Daily</option>
+                    <option value="2">Weekly</option>
+                    <option value="3">Monthly</option>
+                </select>
+                <label for="number">How many times?</label>
+                <input type="number" name="frequency" id="frequency">
+                <input type="submit" value="Add Habit">
+            </form>
+        </div>
+    </div>
+
     <div class="habit-container">
         <nav class="nav">
             <button id="add-habit-btn" style="float: right;">Add New Habit</button>

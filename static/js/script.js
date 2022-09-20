@@ -95,10 +95,10 @@ const showAll = (entryData) => {
     const weeklyDiv = document.querySelector(".weekly-container")
     const monthlyDiv = document.querySelector(".monthly-container")
 
-    if (entryData.period === 0) {
+    if (entryData.period === 1) {
         dailyDiv.appendChild(newDiv)
     }
-    else if (entryData.period === 1) {
+    else if (entryData.period === 2) {
         weeklyDiv.appendChild(newDiv)
     }
     else {

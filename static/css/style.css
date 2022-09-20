@@ -105,7 +105,7 @@ body {
     cursor: pointer;
 }
 
-.habit-frequency {
+.habit-counter {
     flex: 1 0 0;
     color: #354259;
     font-weight: 800;
@@ -129,7 +129,43 @@ body {
     color: #C2DED1;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
 
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: space-between;
+    background-color: #354259;
+    color: white;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 
+.close-button {
+    border: solid white;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+}
 
-
+.close-button:hover {
+    background-color: white;
+    color: #354259;
+    cursor: pointer;
+}
