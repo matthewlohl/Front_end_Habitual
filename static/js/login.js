@@ -82,24 +82,61 @@ function updateURL(){
     window.location.hash = 'register'
     console.log('URL changed')
     const form = document.querySelector('form');
+    if(document.querySelector('p')){
+        document.querySelector('p').remove()
+    }
     form.remove();
     renderRegisterForm()
 }
 
 
-function validateForm(){
-    console.log('checking form')
-    const email_input = document.forms["form"]['email'].value
-    const password_input = document.forms["form"]['password'].value
-    // const confirm_password_input = document.forms["form"]['confirm password'].value
+function validateForm(e){
+    // e.preventDefault();
+    if (document.getElementsByClassName('login-btn')[0]){
+        console.log('Checking Login form')
+        const email_input = document.getElementsByClassName('email-input')[0].value
+        const password_input = document.getElementsByClassName('password-input')[0].value
 
-        if (email_input == "" || password_input == ""){
-            const card = document.querySelector('.card')
-            const p = document.createElement('p')
-            const missingInput = document.createTextNode('Please fill in all fields')
-            p.appendChild(missingInput)
-            card.appendChild(p)
-            return false;
+        if (email_input == '' || password_input == ''){
+            console.log('please fill in all fields')
+            let p = document.querySelector  ('p')
+            if (! p){
+                const card = document.querySelector('.card')
+                const p = document.createElement('p')
+                const missingInput = document.createTextNode('Please fill in all fields')
+                p.appendChild(missingInput)
+                card.appendChild(p)
+                return false;
+            } 
         }
-
+        // check register form
+    } else if (document.getElementsByClassName('confirm-password-input'[0])){
+        console.log('Checking Register form')
+        const email_input = document.getElementsByClassName('email-input')[0].value
+        const password_input = document.getElementsByClassName('password-input')[0].value
+        const confirm_password_input = document.getElementsByClassName('confirm-password-input')[0].value
+        if (email_input == '' || password_input == ''){
+            console.log('please fill in all fields')
+            let p = document.querySelector  ('p')
+            if (! p){
+                const card = document.querySelector('.card')
+                const p = document.createElement('p')
+                const missingInput = document.createTextNode('Please fill in all fields')
+                p.appendChild(missingInput)
+                card.appendChild(p)
+                return false;
+            } 
+        } else if (password_input != confirm_password_input){
+            if(document.querySelector('p')){
+                document.querySelector('p').textContent = 'Incorrect Password'
+                return false;
+            } else {
+                const p = document.createElement('p')
+                const incorrectpw = document.createTextNode('Incorrect Password')
+                p.appendChild(incorrectpw)
+                document.querySelector('.card').appendChild(p)
+                return false;
+            }
+        }
+    }
 }
