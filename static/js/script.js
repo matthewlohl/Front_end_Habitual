@@ -2,11 +2,11 @@
 async function fetchAll() {
     let response = await fetch(`http://localhost:3000/habits`);
     let data = await response.json();
-    for (const [key, value] of Object.entries(data)){
-        showAll(data.habit, data.period)
+    data.forEach(habit => showAll(habit))
     }
+
     
-}
+
 
 async function fetchOne(ID) {
 
@@ -38,7 +38,6 @@ const showHabit = (habit, frequency, frequencyDone) => {
 
 
 }
-
 
 const showAll = (entryData) => {
 
