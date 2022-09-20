@@ -39,14 +39,20 @@ body {
     grid-area: monthly;
 }
 
-#add-habit-btn {
-    float: right;
+#add-habit-btn, #logout-btn {
+    /* float: right; */
     font-size: 20px;
     padding: 10px;
     border-radius: 5px;
     background-color: transparent;
     color:white;
     border-color: #C2DED1;
+}
+
+#add-habit-btn:hover, #logout-btn:hover {
+    background-color: white;
+    color: #354259;
+    cursor: pointer;
 }
 
 .habit {
@@ -59,14 +65,18 @@ body {
     border-radius: 10px;
 }
 
+.habit:hover {
+    cursor: pointer;
+}
+
 .title {
     text-align: center;
     font-size: 30px;
     padding: 20px;
     /* text-decoration-line:underline ; */
     color: #354259;
-    border-bottom-style: dashed;
-    background-color: #ECE5C7;
+    /* border-bottom-style: dashed; */
+    background-color: #CDC2AE;
 }
 
 
