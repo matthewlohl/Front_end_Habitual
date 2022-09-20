@@ -55,12 +55,12 @@ async function appendFrequency(e) {
             })
         }
 
-        const response = await fetch(`http://localhost:3000/habits/${ID}`)
+        const response = await fetch(`http://localhost:3000/habits/${ID}`, options)
         const { id, err } = await response.json();
         if (err) {
             throw Error(err)
         } else {
-            fetchOne(id)
+            fetchAll(id)
         }
     } catch (err) {
         console.warn(err);
@@ -153,10 +153,6 @@ const showAll = (entryData) => {
             monthlyDiv.appendChild(newDiv)
         }
     }
-
-
-
-
 
 
 
