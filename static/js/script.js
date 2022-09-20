@@ -17,6 +17,7 @@ async function fetchOne(ID) {
     
 }
 
+
 async function postHabit(e){
     e.preventDefault();        
     try {
@@ -43,6 +44,29 @@ async function postHabit(e){
     }
     }
 
+async function appendFrequency(e){
+    e.preventDefault();
+    try{
+        const options = {
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                frequency: 1
+            })
+        }
+
+        const response = await fetch(`http://localhost:3000/habits/${ID}`)
+        const { id, err } = await response.json();
+        if(err) {
+            throw Error(err)
+        } else {
+            fetchOne(id)
+        }
+        } catch (err){
+            console.warn(err);
+        }
+    
+}
 
 
 const showHabit = (habit, frequency, frequencyDone) => {
