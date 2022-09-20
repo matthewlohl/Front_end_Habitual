@@ -43,7 +43,41 @@ const showAll = (entryData) => {
 
     const newDiv = document.createElement('div');
     newDiv.className = 'habit'
-    newDiv.id = entryData.id
+    newDiv.id = "habit" + entryData.id
+
+    const newHabitText = document.createElement('div');
+    newHabitText.className = 'habit-text'
+    newHabitText.id = "habit-text" + entryData.id
+    newHabitText.textContent = entryData.name
+
+    const newFreqCounter = document.createElement('div');
+    newFreqCounter.className = 'habit-counter'
+    newFreqCounter.id = "habit-counter" + entryData.id
+    newFreqCounter.textContent = "0/" + entryData.frequency
+
+    const newDoneBtn = document.createElement('button');
+    newDoneBtn.className = "add-completed-once-btn"
+    newDoneBtn.id = "add-completed-once-btn" + entryData.id
+
+    newDiv.appendChild(newHabitText)
+    newDiv.appendChild(newFreqCounter)
+    newDiv.appendChild(newDoneBtn)
+
+    const dailyDiv = document.querySelector(".daily-container")
+    const weeklyDiv = document.querySelector(".weekly-container")
+    const monthlyDiv = document.querySelector(".monthly-container")
+
+    if (entryData.period === 0) {
+        dailyDiv.appendChild(newDiv)
+    }
+    else if (entryData.period === 1) {
+        weeklyDiv.appendChild(newDiv)
+    }
+    else {
+        monthlyDiv.appendChild(newDiv)
+    }
+
+    
 
     
 
