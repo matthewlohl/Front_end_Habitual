@@ -128,6 +128,12 @@ const showAll = (entryData) => {
         else {
             monthlyDiv.appendChild(newDiv)
         }
+        const doneBtns = document.querySelectorAll('.add-completed-once-btn')
+        doneBtns.forEach((e) => {
+            e.addEventListener('click', () => {
+                appendFrequency(e)
+            })
+        })
     } else {
         const newDiv = document.createElement('div');
         newDiv.className = 'habit'
