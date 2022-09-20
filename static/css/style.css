@@ -8,39 +8,60 @@ body {
 .habit-container {
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
             "nav nav nav"
-            "daily weekly monthly";
+            "daily weekly monthly"
+            "completed completed completed"
+            "daily-c weekly-c monthly-c";
 }
 
 .nav {
     grid-area: nav;
-    padding: 50px;
-    border-bottom: 2cm, crimson;
+    padding: 30px;
     background-color:#354259;
 }
 
-.daily-container {
+.daily-container, .completed-daily {
     grid-area: daily;
     border-right-style: dashed;
     border-width: 3px;
-    min-height: 100vh;
+    min-height: 50vh;
     border-color: #354259;
 }
-.weekly-container {
+.weekly-container, .completed-weekly {
     grid-area: weekly;
     border-right-style: dashed;
     border-width: 3px;
     border-color: #354259;
-    min-height: 100vh;
+    min-height: 50vh;
 }
 .monthly-container {
     grid-area: monthly;
 }
+.completed-title {
+    grid-area: completed;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    background-color:#354259;
+}
 
-#add-habit-btn {
-    float: right;
+.completed-daily {
+    grid-area: daily-c;
+}
+
+.completed-weekly {
+    grid-area: weekly-c;
+}
+
+.completed-monthly {
+    grid-area: monthly-c;
+}
+
+#add-habit-btn, #logout-btn {
+    /* float: right; */
     font-size: 20px;
     padding: 10px;
     border-radius: 5px;
@@ -49,25 +70,127 @@ body {
     border-color: #C2DED1;
 }
 
+#add-habit-btn:hover, #logout-btn:hover {
+    background-color: white;
+    color: #354259;
+    cursor: pointer;
+}
+
+
+
+.title {
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+    /* text-decoration-line:underline ; */
+    color: #354259;
+    /* border-bottom-style: dashed; */
+    background-color: #CDC2AE;
+}
+
+.filler-title {
+    font-size: 30px;
+    padding: 27px;
+    /* text-decoration-line:underline ; */
+    color: #354259;
+    /* border-bottom-style: dashed; */
+    background-color: #CDC2AE;
+}
+
 .habit {
     background-color:#C2DED1;
+    display: flex;
     /* text-align: center; */
     padding: 20px;
     margin: 20px;
     border-color: #CDC2AE;
     border-style:solid;
     border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.title {
-    text-align: center;
-    font-size: 30px;
+
+.habit-text {
+    flex: 3 0 0;
+}
+
+.habit-text:hover {
+    cursor: pointer;
+}
+
+.habit-counter {
+    flex: 1 0 0;
+    color: #354259;
+    font-weight: 800;
+}
+
+.add-completed-once-btn {
+    background-color: transparent;
+    border-style: none;
+    padding:0;
+    margin-right: 10px;
+    color: #354259;
+    font-size: 40px;
+    font-weight: 700;
+    flex: 1 0 0;
+    border-radius: 10px;
+}
+
+.add-completed-once-btn:hover{
+    cursor:pointer;
+    background-color: #354259;
+    color: #C2DED1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
     padding: 20px;
-    text-decoration-line:underline ;
+    justify-content: space-between;
+    background-color: #354259;
+    color: white;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
+.close-button {
+    border: solid white;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+}
 
+.close-button:hover {
+    background-color: white;
+    color: #354259;
+    cursor: pointer;
+}
 
-
-
-
+.add-habbit-form {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* 
+label {
+    padding: 10px;
+} */
