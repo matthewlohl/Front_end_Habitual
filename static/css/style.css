@@ -12,24 +12,24 @@ body {
     grid-template-areas:
             "nav nav nav"
             "daily weekly monthly"
-            "completed filler filler";
+            "completed completed completed"
+            "daily-c weekly-c monthly-c";
 }
 
 .nav {
     grid-area: nav;
     padding: 50px;
-    border-bottom: 2cm, crimson;
     background-color:#354259;
 }
 
-.daily-container {
+.daily-container, .completed-daily {
     grid-area: daily;
     border-right-style: dashed;
     border-width: 3px;
     min-height: 50vh;
     border-color: #354259;
 }
-.weekly-container {
+.weekly-container, .completed-weekly {
     grid-area: weekly;
     border-right-style: dashed;
     border-width: 3px;
@@ -39,11 +39,25 @@ body {
 .monthly-container {
     grid-area: monthly;
 }
-.completed-container {
+.completed-title {
     grid-area: completed;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    background-color:#354259;
 }
-.filler {
-    grid-area: filler;
+
+.completed-daily {
+    grid-area: daily-c;
+}
+
+.completed-weekly {
+    grid-area: weekly-c;
+}
+
+.completed-monthly {
+    grid-area: monthly-c;
 }
 
 #add-habit-btn, #logout-btn {

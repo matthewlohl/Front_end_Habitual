@@ -100,7 +100,7 @@ const showAll = (entryData) => {
     const newHabitText = document.createElement('div');
     newHabitText.className = 'habit-text'
     newHabitText.id = "habit-text" + entryData.id
-    newHabitText.textContent = entryData.name
+    newHabitText.textContent = entryData.habit_name
 
     const newFreqCounter = document.createElement('div');
     newFreqCounter.className = 'habit-counter'
