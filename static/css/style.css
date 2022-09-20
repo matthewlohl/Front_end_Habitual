@@ -107,6 +107,8 @@ body {
 
 .habit-frequency {
     flex: 1 0 0;
+    color: #354259;
+    font-weight: 800;
 }
 
 .add-completed-once-btn {
