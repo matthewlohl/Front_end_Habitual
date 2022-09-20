@@ -8,10 +8,11 @@ body {
 .habit-container {
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
             "nav nav nav"
-            "daily weekly monthly";
+            "daily weekly monthly"
+            "completed filler filler";
 }
 
 .nav {
@@ -25,7 +26,7 @@ body {
     grid-area: daily;
     border-right-style: dashed;
     border-width: 3px;
-    min-height: 100vh;
+    min-height: 50vh;
     border-color: #354259;
 }
 .weekly-container {
@@ -33,14 +34,20 @@ body {
     border-right-style: dashed;
     border-width: 3px;
     border-color: #354259;
-    min-height: 100vh;
+    min-height: 50vh;
 }
 .monthly-container {
     grid-area: monthly;
 }
+.completed-container {
+    grid-area: completed;
+}
+.filler {
+    grid-area: filler;
+}
 
-#add-habit-btn {
-    float: right;
+#add-habit-btn, #logout-btn {
+    /* float: right; */
     font-size: 20px;
     padding: 10px;
     border-radius: 5px;
@@ -49,26 +56,76 @@ body {
     border-color: #C2DED1;
 }
 
+#add-habit-btn:hover, #logout-btn:hover {
+    background-color: white;
+    color: #354259;
+    cursor: pointer;
+}
+
+
+
+.title {
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+    /* text-decoration-line:underline ; */
+    color: #354259;
+    /* border-bottom-style: dashed; */
+    background-color: #CDC2AE;
+}
+
+.filler-title {
+    font-size: 30px;
+    padding: 27px;
+    /* text-decoration-line:underline ; */
+    color: #354259;
+    /* border-bottom-style: dashed; */
+    background-color: #CDC2AE;
+}
+
 .habit {
     background-color:#C2DED1;
+    display: flex;
     /* text-align: center; */
     padding: 20px;
     margin: 20px;
     border-color: #CDC2AE;
     border-style:solid;
     border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.title {
-    text-align: center;
-    font-size: 30px;
-    padding: 20px;
-    /* text-decoration-line:underline ; */
+
+.habit-text {
+    flex: 3 0 0;
+}
+
+.habit-text:hover {
+    cursor: pointer;
+}
+
+.habit-frequency {
+    flex: 1 0 0;
+}
+
+.add-completed-once-btn {
+    background-color: transparent;
+    border-style: none;
+    padding:0;
+    margin-right: 10px;
     color: #354259;
-    border-bottom-style: dashed;
-    background-color: #ECE5C7;
+    font-size: 40px;
+    font-weight: 700;
+    flex: 1 0 0;
+    border-radius: 10px;
 }
 
+.add-completed-once-btn:hover{
+    cursor:pointer;
+    background-color: #354259;
+    color: #C2DED1;
+}
 
 
 

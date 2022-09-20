@@ -39,10 +39,15 @@ const showHabit = (habit, frequency, frequencyDone) => {
 
 }
 
+const showAll = (entryData) => {
 
-const showAll = () => {
+    const newDiv = document.createElement('div');
+    newDiv.className = 'habit'
+    newDiv.id = entryData.id
 
     
+
+
 
 
 
