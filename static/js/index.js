@@ -1,6 +1,6 @@
 // fetchAll()
 
-var doneCounter = document.querySelector(".habit-frequency")
+var doneCounter = document.querySelector(".habit-counter")
 var habit = document.querySelector(".habit")
 var completedSection = document.querySelector(".completed-container")
 var button = document.querySelector(".add-completed-once-btn"),
