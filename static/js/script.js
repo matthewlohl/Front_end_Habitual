@@ -23,6 +23,11 @@ async function fetchOne(ID) {
 
 function postHabit(e) {
     e.preventDefault();
+    if (!document.querySelector('#new-habit-text').value) {
+        document.querySelector('#new-habit-text').placeholder = "give your habit a name!"
+    }
+    else {
+
         
         console.log(document.querySelector('#new-habit-text').value)
         
@@ -48,7 +53,7 @@ function postHabit(e) {
     }
 
    
-// }
+}
 
 async function completedDate(e) {
     const completion = new Date().getTime();
@@ -101,9 +106,11 @@ async function appendFrequency(e) {
 
 
 
+
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
   
 
 const showAll = (entryData) => {
@@ -116,7 +123,7 @@ const showAll = (entryData) => {
         newHabitText.className = 'habit-text'
         newHabitText.id = "habit-text" + entryData.id
 
-        newHabitText.textContent = capitalizeFirstLetter(entryData.habit_name)
+        newHabitText.textContent = entryData.habit_name
 
 
 
