@@ -93,6 +93,10 @@ const showHabit = (habit, frequency, frequencyDone) => {
 
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  
 
 const showAll = (entryData) => {
     if (entryData.frequencyDone < entryData.frequency) {
@@ -103,7 +107,7 @@ const showAll = (entryData) => {
         const newHabitText = document.createElement('div');
         newHabitText.className = 'habit-text'
         newHabitText.id = "habit-text" + entryData.id
-        newHabitText.textContent = entryData.habit
+        newHabitText.textContent = capitalizeFirstLetter(entryData.habit_name)
 
 
         const newFreqCounter = document.createElement('div');
