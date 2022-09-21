@@ -101,10 +101,6 @@ const showHabit = (habit, frequency, frequencyDone) => {
 
 
 }
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
   
 
 const showAll = (entryData) => {
@@ -117,7 +113,7 @@ const showAll = (entryData) => {
         newHabitText.className = 'habit-text'
         newHabitText.id = "habit-text" + entryData.id
 
-        newHabitText.textContent = capitalizeFirstLetter(entryData.habit_name)
+        newHabitText.textContent = entryData.habit_name
 
 
 
