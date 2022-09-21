@@ -23,11 +23,10 @@ async function fetchOne(ID) {
 
 function postHabit(e) {
     e.preventDefault();
-    // habitName = document.querySelector('#new-habit-text').textContent
-    // if (!habitName) {
-    //     document.querySelector('#new-habit-text').placeholder = "give your habit a name!"
-    // }
-    // else {
+    if (!document.querySelector('#new-habit-text').value) {
+        document.querySelector('#new-habit-text').placeholder = "give your habit a name!"
+    }
+    else {
         
         console.log(document.querySelector('#new-habit-text').value)
         
@@ -53,7 +52,7 @@ function postHabit(e) {
     }
 
    
-// }
+}
 
 async function appendFrequency(e) {
     try {
@@ -106,7 +105,7 @@ const showHabit = (habit, frequency, frequencyDone) => {
   
 
 const showAll = (entryData) => {
-    if (entryData.frequencyDone < entryData.frequency) {
+    if (entryData.frequency_done < entryData.frequency) {
         const newDiv = document.createElement('div');
         newDiv.className = 'habit'
         newDiv.id = "habit" + entryData.id
@@ -121,7 +120,7 @@ const showAll = (entryData) => {
         const newFreqCounter = document.createElement('div');
         newFreqCounter.className = 'habit-counter'
         newFreqCounter.id = "habit-counter" + entryData.id
-        newFreqCounter.textContent = entryData.frequencyDone + "/" + entryData.frequency
+        newFreqCounter.textContent = entryData.frequency_done + "/" + entryData.frequency
 
         const newDoneBtn = document.createElement('button');
         newDoneBtn.className = "add-completed-once-btn"
