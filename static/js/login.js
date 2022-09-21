@@ -1,3 +1,5 @@
+var server_URL = `http://localhost:3000/`
+
 window.addEventListener('load', renderLoginForm())
 
 function renderLoginForm(){
@@ -76,30 +78,100 @@ function renderRegisterForm() {
 function runValidation(){
     const form = document.querySelector('form')
     form.onsubmit = validateForm
+    // form.onsubmit = requestLogin
 }
 
 function updateURL(){
     window.location.hash = 'register'
     console.log('URL changed')
     const form = document.querySelector('form');
+    if(document.querySelector('p')){
+        document.querySelector('p').remove()
+    }
     form.remove();
     renderRegisterForm()
 }
 
 
-function validateForm(){
-    console.log('checking form')
-    const email_input = document.forms["form"]['email'].value
-    const password_input = document.forms["form"]['password'].value
-    // const confirm_password_input = document.forms["form"]['confirm password'].value
+async function validateForm(e){
+    e.preventDefault();
+    if (document.getElementsByClassName('login-btn')[0]){
+        await console.log('Checking Login form')
+        const email_input = document.getElementsByClassName('email-input')[0].value
+        const password_input = document.getElementsByClassName('password-input')[0].value
 
-        if (email_input == "" || password_input == ""){
-            const card = document.querySelector('.card')
-            const p = document.createElement('p')
-            const missingInput = document.createTextNode('Please fill in all fields')
-            p.appendChild(missingInput)
-            card.appendChild(p)
-            return false;
+        if (email_input == '' || password_input == ''){
+            console.log('please fill in all fields')
+            let p = document.querySelector  ('p')
+            if (! p){
+                const card = document.querySelector('.card')
+                const p = document.createElement('p')
+                const missingInput = document.createTextNode('Please fill in all fields')
+                p.appendChild(missingInput)
+                card.appendChild(p)
+                return false;
+            } 
+        } else {
+            requestLogin(e)
         }
+    } 
+    
+    // check register form
+    else if (document.getElementsByClassName('confirm-password-input'[0])){
+        console.log('Checking Register form')
+        const email_input = document.getElementsByClassName('email-input')[0].value
+        const password_input = document.getElementsByClassName('password-input')[0].value
+        const confirm_password_input = document.getElementsByClassName('confirm-password-input')[0].value
+        if (email_input == '' || password_input == ''){
+            console.log('please fill in all fields')
+            let p = document.querySelector  ('p')
+            if (! p){
+                const card = document.querySelector('.card')
+                const p = document.createElement('p')
+                const missingInput = document.createTextNode('Please fill in all fields')
+                p.appendChild(missingInput)
+                card.appendChild(p)
+                return false;
+            } 
+        } else if (password_input != confirm_password_input){
+            if(document.querySelector('p')){
+                document.querySelector('p').textContent = 'Incorrect Password'
+                return false;
+            } else {
+                const p = document.createElement('p')
+                const incorrectpw = document.createTextNode('Incorrect Password')
+                p.appendChild(incorrectpw)
+                document.querySelector('.card').appendChild(p)
+                return false;
+            }
+        }
+    }
+}
 
+
+async function requestLogin(e){
+    e.preventDefault()
+    console.log('checking credentials ... line 154')
+
+    const user = {
+        email: e.target.email.value,
+        password: e.target.password.value
+    };
+    console.log(user)
+
+    const options = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(user)
+    };
+    const r = await fetch(`${server_URL}users/login`, options)
+    const data = await r.json()
+    success(data)
+}
+
+function success(data){
+    localStorage.setItem('username', data.user)
+    const index = window.location.href.search('login.html')
+    const redirect = window.location.href.slice(0,index)+'index.html'
+    window.location.replace(redirect)
 }

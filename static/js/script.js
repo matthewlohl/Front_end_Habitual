@@ -1,4 +1,7 @@
 
+
+
+
 async function fetchAll() {
     let response = await fetch(`http://localhost:3000/habits`);
     let data = await response.json();
@@ -54,7 +57,7 @@ async function appendFrequency(e) {
                 frequency: 1
             })
         }
-
+        const ID = (e.target.id).slice(6)
         const response = await fetch(`http://localhost:3000/habits/${ID}`, options)
         const { id, err } = await response.json();
         if (err) {
@@ -100,7 +103,8 @@ const showAll = (entryData) => {
         const newHabitText = document.createElement('div');
         newHabitText.className = 'habit-text'
         newHabitText.id = "habit-text" + entryData.id
-        newHabitText.textContent = entryData.habit_name
+        newHabitText.textContent = entryData.habit
+
 
         const newFreqCounter = document.createElement('div');
         newFreqCounter.className = 'habit-counter'
@@ -109,12 +113,13 @@ const showAll = (entryData) => {
 
         const newDoneBtn = document.createElement('button');
         newDoneBtn.className = "add-completed-once-btn"
-        newDoneBtn.id = "add-completed-once-btn" + entryData.id
         newDoneBtn.textContent = "+"
+        newDoneBtn.id = "append" + entryData.id
 
         newDiv.appendChild(newHabitText)
         newDiv.appendChild(newFreqCounter)
         newDiv.appendChild(newDoneBtn)
+
 
         const dailyDiv = document.querySelector(".daily-container")
         const weeklyDiv = document.querySelector(".weekly-container")
@@ -164,6 +169,6 @@ const showAll = (entryData) => {
 
 
 }
-
 module.exports = { fetchAll,
 showAll }
+
