@@ -110,6 +110,7 @@ const showAll = (entryData) => {
         const newDoneBtn = document.createElement('button');
         newDoneBtn.className = "add-completed-once-btn"
         newDoneBtn.id = "add-completed-once-btn" + entryData.id
+        newDoneBtn.textContent = "+"
 
         newDiv.appendChild(newHabitText)
         newDiv.appendChild(newFreqCounter)

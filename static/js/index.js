@@ -1,4 +1,4 @@
-// fetchAll()
+fetchAll()
 var addHabitBtn = document.querySelector('#add-habit-btn')
 var closeFormBtn = document.querySelector('.close-button')
 var doneCounter = document.querySelector(".habit-counter")
