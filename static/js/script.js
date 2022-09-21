@@ -57,7 +57,7 @@ async function appendFrequency(e) {
                 frequency: 1
             })
         }
-
+        const ID = (e.target.id).slice(6)
         const response = await fetch(`http://localhost:3000/habits/${ID}`, options)
         const { id, err } = await response.json();
         if (err) {
@@ -100,10 +100,10 @@ const showAll = (entryData) => {
         newDiv.className = 'habit'
         newDiv.id = "habit" + entryData.id
 
-    const newHabitText = document.createElement('div');
-    newHabitText.className = 'habit-text'
-    newHabitText.id = "habit-text" + entryData.id
-    newHabitText.textContent = entryData.habit
+        const newHabitText = document.createElement('div');
+        newHabitText.className = 'habit-text'
+        newHabitText.id = "habit-text" + entryData.id
+        newHabitText.textContent = entryData.habit
 
 
         const newFreqCounter = document.createElement('div');
@@ -113,7 +113,7 @@ const showAll = (entryData) => {
 
         const newDoneBtn = document.createElement('button');
         newDoneBtn.className = "add-completed-once-btn"
-        newDoneBtn.id = "add-completed-once-btn" + entryData.id
+        newDoneBtn.id = "append" + entryData.id
 
         newDiv.appendChild(newHabitText)
         newDiv.appendChild(newFreqCounter)
