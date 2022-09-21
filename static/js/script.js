@@ -1,4 +1,9 @@
 
+
+
+
+
+
 async function fetchAll() {
     let response = await fetch(`http://localhost:3000/habits`);
     let data = await response.json();
@@ -100,16 +105,18 @@ const showAll = (entryData) => {
     const newHabitText = document.createElement('div');
     newHabitText.className = 'habit-text'
     newHabitText.id = "habit-text" + entryData.id
-    newHabitText.textContent = entryData.name
+    newHabitText.textContent = entryData.habit
 
     const newFreqCounter = document.createElement('div');
     newFreqCounter.className = 'habit-counter'
     newFreqCounter.id = "habit-counter" + entryData.id
     newFreqCounter.textContent = "0/" + entryData.frequency
+    
 
     const newDoneBtn = document.createElement('button');
     newDoneBtn.className = "add-completed-once-btn"
     newDoneBtn.id = "add-completed-once-btn" + entryData.id
+    newDoneBtn.textContent = "Click Me"
 
     newDiv.appendChild(newHabitText)
     newDiv.appendChild(newFreqCounter)
@@ -131,3 +138,10 @@ const showAll = (entryData) => {
 
 
 }
+
+
+fetchAll();
+
+const clicky = document.querySelector("#habit1");
+
+clicky.addEventListener('click', appendFrequency())
