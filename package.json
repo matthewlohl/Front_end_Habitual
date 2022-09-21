@@ -4,12 +4,13 @@
   "description": "## Project 2 - build an Habit tracker",
   "main": "index.js",
   "scripts": {
-    "test": "jest --no-cache",
-    "coverage": "jest --coverage"
+    "test": "jest --watch --silent",
+    "coverage": "jest --coverage --silent"
   },
   "devDependencies": {
     "jest": "^29.0.3",
-    "jest-environment-jsdom": "^29.0.3"
+    "jest-environment-jsdom": "^29.0.3",
+    "jest-fetch-mock": "^3.0.3"
   },
   "keywords": [],
   "author": "",

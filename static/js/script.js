@@ -105,7 +105,7 @@ const showAll = (entryData) => {
         const newFreqCounter = document.createElement('div');
         newFreqCounter.className = 'habit-counter'
         newFreqCounter.id = "habit-counter" + entryData.id
-        newFreqCounter.textContent = entryData.frequencyDone "/" + entryData.frequency
+        newFreqCounter.textContent = entryData.frequencyDone + "/" + entryData.frequency
 
         const newDoneBtn = document.createElement('button');
         newDoneBtn.className = "add-completed-once-btn"
@@ -163,3 +163,6 @@ const showAll = (entryData) => {
 
 
 }
+
+module.exports = { fetchAll,
+showAll }
