@@ -171,31 +171,28 @@ async function requestLogin(e){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(user)
         };
-        fetch(`${server_URL}users/login`, options)
-        .then ()
-        if (Response.ok){
-            const data = await r.json()
-            success(data)
-         } throw new Error(console.log('wrong pw'));
-
+        const r = await fetch(`${server_URL}users/login`, options)
+        const data = await r.json()
+        success(data)
     } catch (err){
         console.log('incorrect username/password')
-        // console.warn(`Error: ${err}`)
-        if (err){
-            console.log('incorrect username/password')
-            const p = document.createElement('p')
-            const wrongcredentials = document.createTextNode('Incorrect username/ password')
-            p.appendChild(wrongcredentials)
-            document.querySelector('.card').appendChild(p)
-        }
+        const p = document.createElement('p')
+        const wrongcredentials = document.createTextNode('Incorrect username/ password')
+        p.appendChild(wrongcredentials)
+        document.querySelector('.card').appendChild(p)
+        
     }
 }
 
 function success(data){
-    localStorage.setItem('username', data.user)
+    // const response = fetch(`${server_URL}users/login`);
+    // loginData = response.json()
+    localStorage.setItem('id', data.id)
+    localStorage.setItem('username', data.username)
     const index = window.location.href.search('login.html')
     const redirect = window.location.href.slice(0,index)+'index.html'
     window.location.replace(redirect)
+    console.log(login_data)
 }
 
 
