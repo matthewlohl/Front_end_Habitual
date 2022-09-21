@@ -3,7 +3,7 @@ var addHabitBtn = document.querySelector('#add-habit-btn')
 var closeFormBtn = document.querySelector('.close-button')
 var doneCounter = document.querySelector(".habit-counter")
 var completedSection = document.querySelector(".completed-container")
-
+var submitBtn = document.querySelector('.add-habit-form')
 
 
 addHabitBtn.addEventListener('click', () => {
@@ -25,3 +25,7 @@ function closeModal(modal) {
     modal.style.display = 'none'
     document.querySelector('.habit-container').style.opacity = '100%'
 }
+
+submitBtn.addEventListener('submit', postHabit)
+
+

@@ -112,7 +112,11 @@ body {
 
 
 .habit-text {
+
     flex: 3 0 0;
+}
+.habit-text::first-letter{
+    text-transform: capitalize;
 }
 
 .habit-text:hover {
@@ -184,7 +188,7 @@ body {
     cursor: pointer;
 }
 
-.add-habbit-form {
+.add-habit-form {
     display: flex;
     padding: 20px;
     flex-direction: column;
