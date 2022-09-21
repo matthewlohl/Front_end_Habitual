@@ -28,14 +28,14 @@ describe('app', () => {
     // })
 
     describe('showAll', () => {
-        test('it posts multiple habits to the page', () => {
+        test('it posts habits to the page', () => {
 
             const fakeAPI = [
                 { habit_name: "Test", frequencyDone : 0, frequency: 2 },
             ]
             app.showAll(fakeAPI)
             const entryCount = document.querySelectorAll('.habit').length
-            expect(entryCount).toBe(16)
+            expect(entryCount).toBe(1)
         })
     })
 })

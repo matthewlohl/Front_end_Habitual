@@ -112,7 +112,11 @@ body {
 
 
 .habit-text {
+
     flex: 3 0 0;
+}
+.habit-text::first-letter{
+    text-transform: capitalize;
 }
 
 .habit-text:hover {
