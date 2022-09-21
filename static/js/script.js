@@ -168,10 +168,6 @@ const showAll = (entryData) => {
 
 
 }
+module.exports = { fetchAll,
+showAll }
 
-
-fetchAll();
-
-const clicky = document.querySelector("#habit1");
-
-clicky.addEventListener('click', appendFrequency())
