@@ -27,6 +27,7 @@ function postHabit(e) {
         document.querySelector('#new-habit-text').placeholder = "give your habit a name!"
     }
     else {
+
         
         console.log(document.querySelector('#new-habit-text').value)
         
@@ -54,6 +55,7 @@ function postHabit(e) {
    
 }
 
+
 async function appendFrequency(e) {
     try {
         const options = {
@@ -65,14 +67,15 @@ async function appendFrequency(e) {
         }
         const ID = (e.target.id).slice(6)
         const response = await fetch(`http://localhost:3000/habits/${ID}`, options)
-        const { id, err } = await response.json();
+        const { err } = await response.json();
         if (err) {
             throw Error(err)
+            
         } else {
-            fetchAll()
         }
     } catch (err) {
         console.warn(err);
+        location.reload();
     }
 
 }
@@ -99,9 +102,9 @@ const showHabit = (habit, frequency, frequencyDone) => {
 
 }
 
-// function capitalizeFirstLetter(string) {
-//     return string.charAt(0).toUpperCase() + string.slice(1);
-//   }
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   
 
 const showAll = (entryData) => {
@@ -113,7 +116,8 @@ const showAll = (entryData) => {
         const newHabitText = document.createElement('div');
         newHabitText.className = 'habit-text'
         newHabitText.id = "habit-text" + entryData.id
-        newHabitText.textContent = entryData.habit_name
+
+        newHabitText.textContent = capitalizeFirstLetter(entryData.habit_name)
 
 
 
@@ -127,6 +131,9 @@ const showAll = (entryData) => {
         newDoneBtn.textContent = "+"
         newDoneBtn.id = "append" + entryData.id
         newDoneBtn.textContent = "+"
+        newDoneBtn.addEventListener('click', (e) => {
+            appendFrequency(e)
+        })
 
         newDiv.appendChild(newHabitText)
         newDiv.appendChild(newFreqCounter)
@@ -146,12 +153,9 @@ const showAll = (entryData) => {
         else {
             monthlyDiv.appendChild(newDiv)
         }
-        const doneBtns = document.querySelectorAll('.add-completed-once-btn')
-        doneBtns.forEach((e) => {
-            e.addEventListener('click', (e) => {
-                appendFrequency(e)
-            })
-        })
+        
+
+
     } else {
         const newDiv = document.createElement('div');
         newDiv.className = 'habit'
@@ -182,7 +186,7 @@ const showAll = (entryData) => {
 
 }
 module.exports = { fetchAll,
-showAll}
+showAll }
 
 
 

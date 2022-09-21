@@ -1,4 +1,5 @@
 var server_URL = `http://localhost:3000/`
+var client_URL = `file:///Users/matthewlo/Desktop/Week7/Central_Repo_Habitual/Front_end_Habitual/`
 
 window.addEventListener('load', renderLoginForm())
 
@@ -36,10 +37,6 @@ function addEventListeners_login(){
     const signup_btn = document.querySelector('.signup-btn')
     signup_btn.addEventListener('click', updateURL)
         
-    
-    // const login_btn = document.querySelector('.login-btn')
-    // signup_btn.addEventListener('click', renderRegisterForm)
-    // login_btn.addEventListener('click', validateForm)
 }
 
 function addEventListeners_signup(){
@@ -48,13 +45,11 @@ function addEventListeners_signup(){
     form.method = 'POST'
     form.onsubmit = validateForm
     
-    // const login_btn = document.querySelector('.login-btn')
-    // signup_btn.addEventListener('click', renderRegisterForm)
-    // login_btn.addEventListener('click', validateForm)
 }
 
 function renderRegisterForm() {
     const fields = [
+        {tag: 'input', attributes: {class: 'name-input', type: 'text', name: 'user_name', placeholder: 'Name'}},
         {tag: 'input', attributes: {class: 'email-input', type: 'email', name: 'email', placeholder: 'Email'}},
         {tag: 'input', attributes: {class: 'password-input', type: 'password', name: 'password', placeholder: 'Password'}},
         {tag: 'input', attributes: {class: 'confirm-password-input', type: 'password', name: 'confirm password', placeholder: 'Confirm Password'}},
@@ -71,14 +66,12 @@ function renderRegisterForm() {
     console.log('render register form')
     const card = document.querySelector('.card')
     card.appendChild(form)
-    // form.addEventListener('submit', addUser)
     addEventListeners_signup()
 }
 
 function runValidation(){
     const form = document.querySelector('form')
     form.onsubmit = validateForm
-    // form.onsubmit = requestLogin
 }
 
 function updateURL(){
@@ -112,6 +105,9 @@ async function validateForm(e){
                 return false;
             } 
         } else {
+            if (document.querySelector('p')){
+                document.querySelector('p').remove()
+            }
             requestLogin(e)
         }
     } 
@@ -119,10 +115,11 @@ async function validateForm(e){
     // check register form
     else if (document.getElementsByClassName('confirm-password-input'[0])){
         console.log('Checking Register form')
+        const name_input = document.getElementsByClassName('name-input')[0].value
         const email_input = document.getElementsByClassName('email-input')[0].value
         const password_input = document.getElementsByClassName('password-input')[0].value
         const confirm_password_input = document.getElementsByClassName('confirm-password-input')[0].value
-        if (email_input == '' || password_input == ''){
+        if (name_input == '' || email_input == '' || password_input == '' || confirm_password_input == ''){
             console.log('please fill in all fields')
             let p = document.querySelector  ('p')
             if (! p){
@@ -144,6 +141,11 @@ async function validateForm(e){
                 document.querySelector('.card').appendChild(p)
                 return false;
             }
+        } else{
+            if (document.querySelector('p')){
+                document.querySelector('p').remove()
+            }
+            requestRegistration(e)
         }
     }
 }
@@ -151,22 +153,42 @@ async function validateForm(e){
 
 async function requestLogin(e){
     e.preventDefault()
-    console.log('checking credentials ... line 154')
+    try{
+        console.log('checking credentials ... line 154')
+    
+        const user = {
+            email: e.target.email.value,
+            password: e.target.password.value
+        };
+        console.log(user)
 
-    const user = {
-        email: e.target.email.value,
-        password: e.target.password.value
-    };
-    console.log(user)
+        // function checkusername() {
+        //     fetch(`${server_URL}/`)
+        // }
+    
+        const options = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(user)
+        };
+        fetch(`${server_URL}users/login`, options)
+        .then ()
+        if (Response.ok){
+            const data = await r.json()
+            success(data)
+         } throw new Error(console.log('wrong pw'));
 
-    const options = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(user)
-    };
-    const r = await fetch(`${server_URL}users/login`, options)
-    const data = await r.json()
-    success(data)
+    } catch (err){
+        console.log('incorrect username/password')
+        // console.warn(`Error: ${err}`)
+        if (err){
+            console.log('incorrect username/password')
+            const p = document.createElement('p')
+            const wrongcredentials = document.createTextNode('Incorrect username/ password')
+            p.appendChild(wrongcredentials)
+            document.querySelector('.card').appendChild(p)
+        }
+    }
 }
 
 function success(data){
@@ -174,4 +196,42 @@ function success(data){
     const index = window.location.href.search('login.html')
     const redirect = window.location.href.slice(0,index)+'index.html'
     window.location.replace(redirect)
+}
+
+
+async function requestRegistration(e){
+    e.preventDefault();
+    try{
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
+        }
+
+        const r = await fetch(`${server_URL}users/register`, options)
+        const data = await r.json()
+        if (data.err){throw Error (data.err)}
+        registerSuccess()
+
+    } catch(err){
+        console.warn(err);
+    }
+}
+
+function registerSuccess(){
+    const card = document.querySelector('.card')
+    const p = document.createElement('p')
+    const div = document.createElement('div')
+    div.classList.add('home-link')
+    const a = document.createElement('a')
+    a.href = `${client_URL}login.html`
+    const missingInput = document.createTextNode('Register Success')
+    const loginLink = document.createTextNode('Back to Login')
+    p.style.color = 'green'
+    p.appendChild(missingInput)
+    a.style.color = 'blue'
+    a.appendChild(loginLink)
+    card.appendChild(p)
+    card.appendChild(div)
+    div.appendChild(a)
 }
