@@ -48,7 +48,6 @@ async function postHabit(e) {
 }
 
 async function appendFrequency(e) {
-    e.preventDefault();
     try {
         const options = {
             method: 'PATCH',
@@ -107,7 +106,9 @@ const showAll = (entryData) => {
         const newHabitText = document.createElement('div');
         newHabitText.className = 'habit-text'
         newHabitText.id = "habit-text" + entryData.id
+
         newHabitText.textContent = capitalizeFirstLetter(entryData.habit_name)
+
 
 
         const newFreqCounter = document.createElement('div');
@@ -119,6 +120,7 @@ const showAll = (entryData) => {
         newDoneBtn.className = "add-completed-once-btn"
         newDoneBtn.textContent = "+"
         newDoneBtn.id = "append" + entryData.id
+        newDoneBtn.textContent = "+"
 
         newDiv.appendChild(newHabitText)
         newDiv.appendChild(newFreqCounter)
@@ -140,7 +142,7 @@ const showAll = (entryData) => {
         }
         const doneBtns = document.querySelectorAll('.add-completed-once-btn')
         doneBtns.forEach((e) => {
-            e.addEventListener('click', () => {
+            e.addEventListener('click', (e) => {
                 appendFrequency(e)
             })
         })
@@ -175,4 +177,8 @@ const showAll = (entryData) => {
 }
 module.exports = { fetchAll,
 showAll }
+
+
+
+fetchAll();
 
