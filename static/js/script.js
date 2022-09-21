@@ -35,8 +35,8 @@ function postHabit(e) {
             habit_name: document.querySelector('#new-habit-text').value,
             period: document.querySelector('#new-habit-period').value,
             frequency: document.querySelector('#new-habit-frequency').value,
-            dateComplete: [],
-            frequencyDone: 0
+            date_complete: [],
+            frequency_done: 0
         };
 
         const options = {
@@ -54,6 +54,30 @@ function postHabit(e) {
 
    
 }
+
+async function completedDate(e) {
+    const completion = new Date().getTime();
+    try {
+        const options = {
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                date_complete: completion
+            })
+        }
+        const response = await fetch(`http://localhost:3000/habits/${e}`, options)
+        const { err } = await response.json();
+        if (err) {
+            throw Error(err)
+        } else {
+            location.reload();
+        }
+    }
+    catch (err){
+        console.warn(err);
+    }
+}
+
 
 
 async function appendFrequency(e) {
@@ -81,26 +105,12 @@ async function appendFrequency(e) {
 }
 
 
-const showHabit = (habit, frequency, frequencyDone) => {
-
-    const card = document.createElement('div');
-    const postArea = document.createElement('div');
-    // Add classes to card and postArea 
-    postArea.appendChild(card);
-
-    const cardTitle = document.createElement('div');
-    cardTitle.textContent = habit;
-    // Add class to cardTitle
-    card.appendChild(cardTitle)
-
-    const cardFrequencyBox = document.createElement('div');
-    cardFrequency.textContent = (frequencyDone.toString() + " / " + frequency.toString());
-    // Add class to cardTitle
-    card.appendChild(cardFrequencyBox);
 
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
-}
   
 
 const showAll = (entryData) => {
@@ -169,12 +179,15 @@ const showAll = (entryData) => {
 
         if (entryData.period === 1) {
             dailyDiv.appendChild(newDiv)
+            completedDate(entryData.id)
         }
         else if (entryData.period === 2) {
             weeklyDiv.appendChild(newDiv)
+            completedDate(entryData.id)
         }
         else {
             monthlyDiv.appendChild(newDiv)
+            completedDate(entryData.id)
         }
     }
 
