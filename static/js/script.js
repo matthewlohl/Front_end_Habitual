@@ -1,9 +1,9 @@
 
 
 
-
 async function fetchAll() {
-    let response = await fetch(`http://localhost:3000/habits`);
+    var userID = localStorage.getItem('id')
+    let response = await fetch(`http://localhost:3000/habits/user/${userID}`);
     let data = await response.json();
     data.forEach(habit => showAll(habit))
 }

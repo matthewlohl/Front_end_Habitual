@@ -5,6 +5,7 @@ var doneCounter = document.querySelector(".habit-counter")
 var completedSection = document.querySelector(".completed-container")
 var submitBtn = document.querySelector('.add-habit-form')
 
+document.querySelector('#username').textContent = localStorage.getItem('username')
 
 addHabitBtn.addEventListener('click', () => {
     const modal = document.querySelector('#modal')

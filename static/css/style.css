@@ -60,6 +60,12 @@ body {
     grid-area: monthly-c;
 }
 
+.nav{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
 #add-habit-btn, #logout-btn {
     /* float: right; */
     font-size: 20px;
@@ -75,6 +81,11 @@ body {
     color: #354259;
     cursor: pointer;
 }
+
+nav h1 {
+    color: white;
+}
+
 
 
 
