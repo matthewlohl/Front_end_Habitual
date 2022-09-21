@@ -188,7 +188,7 @@ body {
     cursor: pointer;
 }
 
-.add-habbit-form {
+.add-habit-form {
     display: flex;
     padding: 20px;
     flex-direction: column;

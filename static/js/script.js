@@ -21,31 +21,39 @@ async function fetchOne(ID) {
 }
 
 
-async function postHabit(e) {
+function postHabit(e) {
     e.preventDefault();
-    try {
+    // habitName = document.querySelector('#new-habit-text').textContent
+    // if (!habitName) {
+    //     document.querySelector('#new-habit-text').placeholder = "give your habit a name!"
+    // }
+    // else {
+        
+        console.log(document.querySelector('#new-habit-text').value)
+        
+        const entryData = {
+            habit_name: document.querySelector('#new-habit-text').value,
+            period: document.querySelector('#new-habit-period').value,
+            frequency: document.querySelector('#new-habit-frequency').value,
+            dateComplete: [],
+            frequencyDone: 0
+        };
+
         const options = {
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                name: document.querySelector('#habit-name').value,
-                period: document.querySelector('#habit-period').value,
-                frequency: document.querySelector('#habit-frequency').value,
-                frequency_done: 0
-            })
-        }
+            body: JSON.stringify(entryData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
 
-        const response = await fetch('http://localhost:3000/habits', options);
-        const { id, err } = await response.json();
-        if (err) {
-            throw Error(err)
-        } else {
-            fetchOne(id)
-        }
-    } catch (err) {
-        console.warn(err);
+        fetch('http://localhost:3000/habits', options)
+            .then(r => r.json())
+            .catch(console.warn)
     }
-}
+
+   
+// }
 
 async function appendFrequency(e) {
     try {
@@ -98,7 +106,7 @@ const showHabit = (habit, frequency, frequencyDone) => {
   
 
 const showAll = (entryData) => {
-    if (entryData.frequency_done < entryData.frequency) {
+    if (entryData.frequencyDone < entryData.frequency) {
         const newDiv = document.createElement('div');
         newDiv.className = 'habit'
         newDiv.id = "habit" + entryData.id
@@ -113,7 +121,7 @@ const showAll = (entryData) => {
         const newFreqCounter = document.createElement('div');
         newFreqCounter.className = 'habit-counter'
         newFreqCounter.id = "habit-counter" + entryData.id
-        newFreqCounter.textContent = entryData.frequency_done + "/" + entryData.frequency
+        newFreqCounter.textContent = entryData.frequencyDone + "/" + entryData.frequency
 
         const newDoneBtn = document.createElement('button');
         newDoneBtn.className = "add-completed-once-btn"
