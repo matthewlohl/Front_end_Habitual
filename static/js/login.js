@@ -37,10 +37,6 @@ function addEventListeners_login(){
     const signup_btn = document.querySelector('.signup-btn')
     signup_btn.addEventListener('click', updateURL)
         
-    
-    // const login_btn = document.querySelector('.login-btn')
-    // signup_btn.addEventListener('click', renderRegisterForm)
-    // login_btn.addEventListener('click', validateForm)
 }
 
 function addEventListeners_signup(){
@@ -49,9 +45,6 @@ function addEventListeners_signup(){
     form.method = 'POST'
     form.onsubmit = validateForm
     
-    // const login_btn = document.querySelector('.login-btn')
-    // signup_btn.addEventListener('click', renderRegisterForm)
-    // login_btn.addEventListener('click', validateForm)
 }
 
 function renderRegisterForm() {
@@ -73,14 +66,12 @@ function renderRegisterForm() {
     console.log('render register form')
     const card = document.querySelector('.card')
     card.appendChild(form)
-    // form.addEventListener('submit', addUser)
     addEventListeners_signup()
 }
 
 function runValidation(){
     const form = document.querySelector('form')
     form.onsubmit = validateForm
-    // form.onsubmit = requestLogin
 }
 
 function updateURL(){
@@ -114,6 +105,9 @@ async function validateForm(e){
                 return false;
             } 
         } else {
+            if (document.querySelector('p')){
+                document.querySelector('p').remove()
+            }
             requestLogin(e)
         }
     } 
@@ -148,7 +142,9 @@ async function validateForm(e){
                 return false;
             }
         } else{
-            document.querySelector('p').remove()
+            if (document.querySelector('p')){
+                document.querySelector('p').remove()
+            }
             requestRegistration(e)
         }
     }
@@ -157,22 +153,42 @@ async function validateForm(e){
 
 async function requestLogin(e){
     e.preventDefault()
-    console.log('checking credentials ... line 154')
+    try{
+        console.log('checking credentials ... line 154')
+    
+        const user = {
+            email: e.target.email.value,
+            password: e.target.password.value
+        };
+        console.log(user)
 
-    const user = {
-        email: e.target.email.value,
-        password: e.target.password.value
-    };
-    console.log(user)
+        // function checkusername() {
+        //     fetch(`${server_URL}/`)
+        // }
+    
+        const options = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(user)
+        };
+        fetch(`${server_URL}users/login`, options)
+        .then ()
+        if (Response.ok){
+            const data = await r.json()
+            success(data)
+         } throw new Error(console.log('wrong pw'));
 
-    const options = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(user)
-    };
-    const r = await fetch(`${server_URL}users/login`, options)
-    const data = await r.json()
-    success(data)
+    } catch (err){
+        console.log('incorrect username/password')
+        // console.warn(`Error: ${err}`)
+        if (err){
+            console.log('incorrect username/password')
+            const p = document.createElement('p')
+            const wrongcredentials = document.createTextNode('Incorrect username/ password')
+            p.appendChild(wrongcredentials)
+            document.querySelector('.card').appendChild(p)
+        }
+    }
 }
 
 function success(data){
