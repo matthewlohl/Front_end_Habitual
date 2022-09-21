@@ -15,7 +15,7 @@ async function fetchOne(ID) {
 
     let response = await fetch(`http://localhost:3000/habits/${ID}`);
     let data = await response.json();
-    showHabit(data.name, data.frequency, data.frequencyDone, data.period)
+    showHabit(data.name, data.frequency, data.frequency_done, data.period)
 
 
 }
@@ -31,7 +31,7 @@ async function postHabit(e) {
                 name: document.querySelector('#habit-name').value,
                 period: document.querySelector('#habit-period').value,
                 frequency: document.querySelector('#habit-frequency').value,
-                frequencyDone: 0
+                frequency_done: 0
             })
         }
 
@@ -53,7 +53,7 @@ async function appendFrequency(e) {
             method: 'PATCH',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                frequency: 1
+                frequency_done: 1
             })
         }
         const ID = (e.target.id).slice(6)
@@ -62,7 +62,7 @@ async function appendFrequency(e) {
         if (err) {
             throw Error(err)
         } else {
-            fetchAll(id)
+            fetchAll()
         }
     } catch (err) {
         console.warn(err);
@@ -98,7 +98,7 @@ const showHabit = (habit, frequency, frequencyDone) => {
   
 
 const showAll = (entryData) => {
-    if (entryData.frequencyDone < entryData.frequency) {
+    if (entryData.frequency_done < entryData.frequency) {
         const newDiv = document.createElement('div');
         newDiv.className = 'habit'
         newDiv.id = "habit" + entryData.id
@@ -113,7 +113,7 @@ const showAll = (entryData) => {
         const newFreqCounter = document.createElement('div');
         newFreqCounter.className = 'habit-counter'
         newFreqCounter.id = "habit-counter" + entryData.id
-        newFreqCounter.textContent = entryData.frequencyDone + "/" + entryData.frequency
+        newFreqCounter.textContent = entryData.frequency_done + "/" + entryData.frequency
 
         const newDoneBtn = document.createElement('button');
         newDoneBtn.className = "add-completed-once-btn"
