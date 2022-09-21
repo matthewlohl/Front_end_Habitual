@@ -1,3 +1,5 @@
+var server_URL = `http://localhost:3000/`
+
 window.addEventListener('load', renderLoginForm())
 
 function renderLoginForm(){
@@ -76,6 +78,7 @@ function renderRegisterForm() {
 function runValidation(){
     const form = document.querySelector('form')
     form.onsubmit = validateForm
+    // form.onsubmit = requestLogin
 }
 
 function updateURL(){
@@ -90,10 +93,10 @@ function updateURL(){
 }
 
 
-function validateForm(e){
-    // e.preventDefault();
+async function validateForm(e){
+    e.preventDefault();
     if (document.getElementsByClassName('login-btn')[0]){
-        console.log('Checking Login form')
+        await console.log('Checking Login form')
         const email_input = document.getElementsByClassName('email-input')[0].value
         const password_input = document.getElementsByClassName('password-input')[0].value
 
@@ -108,9 +111,13 @@ function validateForm(e){
                 card.appendChild(p)
                 return false;
             } 
+        } else {
+            requestLogin(e)
         }
-        // check register form
-    } else if (document.getElementsByClassName('confirm-password-input'[0])){
+    } 
+    
+    // check register form
+    else if (document.getElementsByClassName('confirm-password-input'[0])){
         console.log('Checking Register form')
         const email_input = document.getElementsByClassName('email-input')[0].value
         const password_input = document.getElementsByClassName('password-input')[0].value
@@ -139,4 +146,32 @@ function validateForm(e){
             }
         }
     }
+}
+
+
+async function requestLogin(e){
+    e.preventDefault()
+    console.log('checking credentials ... line 154')
+
+    const user = {
+        email: e.target.email.value,
+        password: e.target.password.value
+    };
+    console.log(user)
+
+    const options = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(user)
+    };
+    const r = await fetch(`${server_URL}users/login`, options)
+    const data = await r.json()
+    success(data)
+}
+
+function success(data){
+    localStorage.setItem('username', data.user)
+    const index = window.location.href.search('login.html')
+    const redirect = window.location.href.slice(0,index)+'index.html'
+    window.location.replace(redirect)
 }
