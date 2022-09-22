@@ -15,7 +15,7 @@ function postHabit(e) {
     }
     else {
 
-        
+        console.log(document.querySelector('#new-habit-period').value)
         console.log(document.querySelector('#new-habit-text').value)
         
         const entryData = {
@@ -23,7 +23,6 @@ function postHabit(e) {
             period: document.querySelector('#new-habit-period').value,
             frequency: document.querySelector('#new-habit-frequency').value,
             userid: localStorage.getItem('id'),
-            date_complete: [],
             frequency_done: 0
         };
 
@@ -35,6 +34,7 @@ function postHabit(e) {
             headers: {
                 "Content-Type": "application/json"
             }
+
         };
 
         fetch('http://localhost:3000/habits', options)
@@ -47,6 +47,7 @@ function postHabit(e) {
 
 async function completedDate(e) {
     const completion = new Date().getTime();
+    const ID = localStorage.getItem('id')
     try {
         const options = {
             method: 'PATCH',
@@ -55,7 +56,7 @@ async function completedDate(e) {
                 date_complete: completion
             })
         }
-        const response = await fetch(`http://localhost:3000/habits/${e}`, options)
+        const response = await fetch(`http://localhost:3000/habits/${ID}/${e}`, options)
         const { err } = await response.json();
         if (err) {
             throw Error(err)
@@ -176,10 +177,8 @@ const showAll = (entryData) => {
 
 
 }
-module.exports = { fetchAll,
-showAll }
+module.exports = {fetchAll, showAll }
 
 
 
-fetchAll();
 

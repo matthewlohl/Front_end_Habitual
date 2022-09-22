@@ -29,9 +29,9 @@ function closeModal(modal) {
 }
 
 submitBtn.addEventListener('submit', postHabit)
-submitBtn.addEventListener('submit', () => {
-    location.reload()
-})
+// submitBtn.addEventListener('submit', () => {
+//     location.reload()
+// })
 
 function logout(){
     localStorage.clear();

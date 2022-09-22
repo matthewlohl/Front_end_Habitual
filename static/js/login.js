@@ -1,5 +1,5 @@
 var server_URL = `http://localhost:3000/`
-var client_URL = `file:///Users/matthewlo/Desktop/Week7/Central_Repo_Habitual/Front_end_Habitual/`
+var client_URL = `C:/Users/Liam/Central_Repo_Habitual/Front_end_Habitual/`
 
 window.addEventListener('load', renderLoginForm())
 
