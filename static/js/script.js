@@ -1,9 +1,10 @@
-
+var server_URL = `https://habitual-backend-fp.herokuapp.com`
+var client_URL = `https://front-end-habitual.netlify.app/`
 
 
 async function fetchAll() {
     var userID = localStorage.getItem('id')
-    let response = await fetch(`http://localhost:3000/habits/user/${userID}`);
+    let response = await fetch(`${server_URL}/${userID}`);
     let data = await response.json();
     data.forEach(habit => showAll(habit))
 }
@@ -37,7 +38,7 @@ function postHabit(e) {
 
         };
 
-        fetch('http://localhost:3000/habits', options)
+        fetch(`${server_URL}/habits`, options)
             .then(r => r.json())
             .catch(console.warn)
     }
@@ -56,7 +57,7 @@ async function completedDate(e) {
                 date_complete: completion
             })
         }
-        const response = await fetch(`http://localhost:3000/habits/${ID}/${e}`, options)
+        const response = await fetch(`${server_URL}/habits/${ID}/${e}`, options)
         const { err } = await response.json();
         if (err) {
             throw Error(err)
@@ -81,7 +82,7 @@ async function appendFrequency(e) {
             })
         }
         const ID = (e.target.id).slice(6)
-        const response = await fetch(`http://localhost:3000/habits/${ID}`, options)
+        const response = await fetch(`${server_URL}/habits/${ID}`, options)
         const { err } = await response.json();
         if (err) {
             throw Error(err)
