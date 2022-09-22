@@ -1,5 +1,5 @@
-var server_URL = `http://localhost:3000/`
-var client_URL = `C:/Users/Liam/Central_Repo_Habitual/Front_end_Habitual/`
+var server_URL = `https://habitual-backend-fp.herokuapp.com`
+var client_URL = `https://front-end-habitual.netlify.app/`
 
 window.addEventListener('load', renderLoginForm())
 
@@ -221,7 +221,7 @@ function registerSuccess(){
     const div = document.createElement('div')
     div.classList.add('home-link')
     const a = document.createElement('a')
-    a.href = `${client_URL}login.html`
+    a.href = `${client_URL}/login.html`
     const missingInput = document.createTextNode('Register Success')
     const loginLink = document.createTextNode('Back to Login')
     p.style.color = 'green'
