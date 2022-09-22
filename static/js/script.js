@@ -1,28 +1,20 @@
 
 
 
-
 async function fetchAll() {
-    let response = await fetch(`http://localhost:3000/habits`);
+    var userID = localStorage.getItem('id')
+    let response = await fetch(`http://localhost:3000/habits/user/${userID}`);
     let data = await response.json();
     data.forEach(habit => showAll(habit))
 }
 
-
-
-
-async function fetchOne(ID) {
-
-    let response = await fetch(`http://localhost:3000/habits/${ID}`);
-    let data = await response.json();
-    showHabit(data.name, data.frequency, data.frequency_done, data.period)
-
-
-}
-
-
 function postHabit(e) {
     e.preventDefault();
+    if (!document.querySelector('#new-habit-text').value) {
+        document.querySelector('#new-habit-text').placeholder = "give your habit a name!"
+    }
+    else {
+
         
         console.log(document.querySelector('#new-habit-text').value)
         
@@ -30,8 +22,14 @@ function postHabit(e) {
             habit_name: document.querySelector('#new-habit-text').value,
             period: document.querySelector('#new-habit-period').value,
             frequency: document.querySelector('#new-habit-frequency').value,
+
+            userid: localStorage.getItem('id'),
+
+
             frequency_done: 0
         };
+
+        console.log(`${entryData} - client line 43`)
 
         const options = {
             method: 'POST',
@@ -47,7 +45,7 @@ function postHabit(e) {
     }
 
    
-// }
+}
 
 async function completedDate(e) {
     const completion = new Date().getTime();
@@ -97,12 +95,6 @@ async function appendFrequency(e) {
     }
 
 }
-
-
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
   
 
 const showAll = (entryData) => {
@@ -115,7 +107,7 @@ const showAll = (entryData) => {
         newHabitText.className = 'habit-text'
         newHabitText.id = "habit-text" + entryData.id
 
-        newHabitText.textContent = capitalizeFirstLetter(entryData.habit_name)
+        newHabitText.textContent = entryData.habit_name
 
 
 
