@@ -171,7 +171,7 @@ async function requestLogin(e){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(user)
         };
-        const r = await fetch(`${server_URL}users/login`, options)
+        const r = await fetch(`${server_URL}/users/login`, options)
         const data = await r.json()
         success(data)
     } catch (err){
@@ -205,7 +205,7 @@ async function requestRegistration(e){
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
 
-        const r = await fetch(`${server_URL}users/register`, options)
+        const r = await fetch(`${server_URL}/users/register`, options)
         const data = await r.json()
         if (data.err){throw Error (data.err)}
         registerSuccess()
