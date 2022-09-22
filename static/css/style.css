@@ -177,14 +177,19 @@ nav h1 {
     flex-direction: row;
     padding: 20px;
     justify-content: space-between;
-    background-color: #354259;
-    color: white;
+    background-color:#354259;
+    color:white;
+    font-weight: 500;
+    font-size: 25px;
+    border-bottom:#CDC2AE;
+    border-bottom-style:dashed;
+    border-bottom-width: 5px;
     align-items: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
-.close-button {
+.close-button, #new-habit-submit {
     border: solid white;
     border-radius: 10px;
     background-color: transparent;
@@ -193,7 +198,7 @@ nav h1 {
     font-weight: 800;
 }
 
-.close-button:hover {
+.close-button:hover, #new-habit-submit:hover{
     background-color: white;
     color: #354259;
     cursor: pointer;
@@ -201,11 +206,58 @@ nav h1 {
 
 .add-habit-form {
     display: flex;
-    padding: 20px;
+    padding: 40px;
     flex-direction: column;
     justify-content: space-between;
 }
-/* 
-label {
+
+.form-time {
+    display: flex;
+    flex-direction: column;
+    background-color: #354259;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    font-weight: 400;
+    margin: 20px;
     padding: 10px;
-} */
+}
+
+#new-habit-frequency{
+    margin: 20px;
+    border-radius: 10px;
+}
+
+#new-habit-period{
+    margin: 20px;
+    padding: 3px;
+}
+
+#new-habit-text {
+    margin: 20px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: white;
+}
+
+#new-habit-submit {
+    background-color: #354259;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+
+.new-habit-name{
+    display: flex;
+    background-color: #354259;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    font-weight: 400;
+    margin: 20px;
+}

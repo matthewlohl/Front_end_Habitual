@@ -8,19 +8,6 @@ async function fetchAll() {
     data.forEach(habit => showAll(habit))
 }
 
-
-
-
-async function fetchOne(ID) {
-
-    let response = await fetch(`http://localhost:3000/habits/${ID}`);
-    let data = await response.json();
-    showHabit(data.name, data.frequency, data.frequency_done, data.period)
-
-
-}
-
-
 function postHabit(e) {
     e.preventDefault();
     if (!document.querySelector('#new-habit-text').value) {
@@ -106,14 +93,6 @@ async function appendFrequency(e) {
     }
 
 }
-
-
-
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
   
 
 const showAll = (entryData) => {
