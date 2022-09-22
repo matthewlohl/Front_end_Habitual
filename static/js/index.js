@@ -4,6 +4,7 @@ var closeFormBtn = document.querySelector('.close-button')
 var doneCounter = document.querySelector(".habit-counter")
 var completedSection = document.querySelector(".completed-container")
 var submitBtn = document.querySelector('.add-habit-form')
+var logoutBtn = document.querySelector('#logout-btn')
 
 document.querySelector('#username').textContent = localStorage.getItem('username')
 
@@ -28,5 +29,16 @@ function closeModal(modal) {
 }
 
 submitBtn.addEventListener('submit', postHabit)
+submitBtn.addEventListener('submit', () => {
+    location.reload()
+})
+
+function logout(){
+    localStorage.clear();
+    location.replace('login.html')
+}
+
+logoutBtn.addEventListener('click', logout)
+
 
 
