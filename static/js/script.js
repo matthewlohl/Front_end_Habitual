@@ -110,7 +110,6 @@ const showAll = (entryData) => {
         newHabitText.textContent = entryData.habit_name
 
 
-
         const newFreqCounter = document.createElement('div');
         newFreqCounter.className = 'habit-counter'
         newFreqCounter.id = "habit-counter" + entryData.id
