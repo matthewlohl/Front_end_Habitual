@@ -4,7 +4,7 @@ var client_URL = `https://front-end-habitual.netlify.app/`
 
 async function fetchAll() {
     var userID = localStorage.getItem('id')
-    let response = await fetch(`${server_URL}/${userID}`);
+    let response = await fetch(`${server_URL}/habits/${userID}`);
     let data = await response.json();
     data.forEach(habit => showAll(habit))
 }
