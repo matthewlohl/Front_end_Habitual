@@ -30,7 +30,6 @@ function postHabit(e) {
             habit_name: document.querySelector('#new-habit-text').value,
             period: document.querySelector('#new-habit-period').value,
             frequency: document.querySelector('#new-habit-frequency').value,
-            date_complete: [],
             frequency_done: 0
         };
 
